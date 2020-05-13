@@ -1,0 +1,20 @@
+pipeline {
+	agent any
+	stages {
+		stage('Linting') {
+			steps {
+				sh 'tidy -q -e *.html'
+			}
+		}
+		stage 'Promotion' {
+			timeout(time: 12, unit: “HOURS”) {
+				input message: ‘Approve Deploy?’, ok: ‘Yes’
+			}
+		}
+		stage 'Deploy test' {
+			steps {
+				sh 'tidy -q -e *.html'
+			}
+		}
+	}
+}
