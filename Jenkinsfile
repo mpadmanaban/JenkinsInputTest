@@ -6,12 +6,12 @@ pipeline {
 				sh 'tidy -q -e *.html'
 			}
 		}
-		stage 'Promotion' {
-			timeout(time: 12, unit: “HOURS”) {
-				input message: ‘Approve Deploy?’, ok: ‘Yes’
+		stage('Promotion') {
+			timeout(time: 1, unit: "HOURS") {
+				input message: 'Approve Deploy?', ok: 'Yes'
 			}
 		}
-		stage 'Deploy test' {
+		stage('Deploy test') {
 			steps {
 				sh 'tidy -q -e *.html'
 			}
