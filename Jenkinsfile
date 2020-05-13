@@ -7,8 +7,10 @@ pipeline {
 			}
 		}
 		stage('Promotion') {
-			timeout(time: 1, unit: "HOURS") {
-				input message: 'Approve Deploy?', ok: 'Yes'
+			steps {
+				timeout(time: 1, unit: "HOURS") {
+					input message: 'Approve Deploy?', ok: 'Yes'
+				}
 			}
 		}
 		stage('Deploy test') {
